@@ -56,6 +56,7 @@ module.exports = class Downloader {
    * @param {boolean} [config.skipExistingFileName = false] true will cause the downloader to skip the download process in case a file with the same name already exists.
    * @param {number} [config.timeout=6000]
    * @param {number} [config.maxAttempts=1]
+   * @param {number} [config.delayBetweenAttempts=3000]
    * @param {object} [config.headers = undefined]
    * @param {object} [config.httpsAgent = undefined]
    * @param {string} [config.proxy = undefined]
@@ -79,6 +80,7 @@ module.exports = class Downloader {
       fileName: undefined,
       timeout: 6000,
       maxAttempts: 1,
+      delayBetweenAttempts: 3000,
       useSynchronousMode: false,
       httpsAgent: undefined,
       proxy: undefined,
@@ -86,6 +88,7 @@ module.exports = class Downloader {
       cloneFiles: true,
       skipExistingFileName: false,
       shouldBufferResponse: false,
+      onAttempt: undefined,
       onResponse: undefined,
       onBeforeSave: undefined,
       onError: undefined,
@@ -189,7 +192,10 @@ module.exports = class Downloader {
             }
           }
         },
+        timeout: this.config.timeout,
         maxAttempts: this.config.maxAttempts,
+        delay: this.config.delayBetweenAttempts,
+        onAttempt: this.config.onAttempt,
       }
     );
     return data;

@@ -18,8 +18,8 @@ module.exports = async function rpur(promiseFactory, config = {}) {
   const dummy = () => false;
   const shouldStop = config.shouldStop || dummy;
   const delay = config.delay || null;
-  const maxAttempts = config.maxAttempts || 3;
-  const timeout = config.timeout || 0;
+  const maxAttempts = config.maxAttempts || 0;
+  const timeout = config.timeout || 60000 * 10; // Default timeout after request will be canceled is 10 minutes
   try {
     var newAttempts = attempts + 1;
 
