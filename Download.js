@@ -1,5 +1,5 @@
 const fs = require('fs');
-const http = require('http')//For jsdoc
+const http = require('http') // For jsdoc
 const IncomingMessage = http.IncomingMessage
 const makeRequest = require('./makeRequest');
 const stream = require('stream');
