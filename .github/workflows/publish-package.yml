@@ -15,7 +15,6 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run lint
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_AUTH_TOKEN }}
